@@ -1,0 +1,99 @@
+#!/bin/bash
+
+# Store current working directory
+CWD=$(pwd)
+readonly CWD
+
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y curl zip unzip ripgrep
+
+# Install sdkman
+function install_sdkman() {
+    if [ -d "$HOME/.sdkman" ]; then
+        echo "sdkman is already installed."
+    else
+        echo "Installing sdkman..."
+        curl -s "https://get.sdkman.io" | bash
+        source "$HOME/.sdkman/bin/sdkman-init.sh"
+        # Install Java
+        sdk install java 21.0.8-amzn
+        # Install Maven
+        sdk install maven 3.9.5
+    fi
+}
+
+function install_nvm() {
+    if [ -d "$HOME/.nvm" ]; then
+        echo "nvm is already installed."
+    else
+        echo "Installing nvm..."
+        curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+        source "$HOME/.nvm/nvm.sh"
+        # Install Node.js
+        nvm install 24.0.0
+        nvm alias default 24.0.0
+    fi
+}
+
+function install_neovim() {
+    if command -v nvim &> /dev/null; then
+        echo "Neovim is already installed."
+    else
+        echo "Installing Neovim..."
+        # Install neovim
+        curl -LO https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz
+        sudo rm -rf /opt/nvim
+        sudo tar -C /opt -xzf nvim-linux-x86_64.tar.gz
+        rm nvim-linux-x86_64.tar.gz
+
+        # Find export PATH line in .bashrc
+        if grep -q 'export PATH="\$PATH:/opt/nvim-linux-x86_x86_64/bin"' ~/.bashrc; then
+            echo "Neovim path already exists in .bashrc."
+        else
+            echo "Adding Neovim to PATH in .bashrc..."
+            echo 'export PATH="$PATH:/opt/nvim-linux-x86_64/bin"' >> ~/.bashrc
+        fi
+
+        mkdir -p ~/.config
+        # clone nvim config
+        cd ~/.config && git clone https://github.com/LakhveerChahal/nvim
+
+        cd ~ && mkdir -p nvim-space
+        cd ~ && mkdir -p nvim-plugins && cd nvim-plugins && mkdir -p nvim-jdtls
+
+        cd ~/nvim-plugins && git clone https://github.com/microsoft/java-debug && cd java-debug && ./mvnw clean install -DskipTests
+
+        cd ~/nvim-plugins/nvim-jdtls && curl "https://download.eclipse.org/jdtls/milestones/1.43.0/jdt-language-server-1.43.0-202412191447.tar.gz" -o jdtls.tar.gz
+        tar -xzf jdtls.tar.gz -C ~/nvim-plugins/nvim-jdtls --strip-components=1
+
+        if [ ! -f ~/nvim-plugins/lombok.jar ]; then
+            echo "Downloading Lombok..."
+            # Download Lombok jar if it doesn't exist
+            cd ~/nvim-plugins && curl https://projectlombok.org/downloads/lombok.jar -o lombok.jar
+        else
+            echo "Lombok jar already exists."
+        fi
+    fi
+}
+
+function copy_dotfiles() {
+    echo "Copying dotfiles from $CWD..."
+    # Set bash aliases
+    cd $CWD
+    cp .bash_aliases ~/
+    source ~/.bashrc
+}
+
+function main() {
+    install_sdkman
+
+    install_nvm
+
+    install_neovim
+
+    copy_dotfiles
+
+    echo "Installation complete."
+}
+
+main

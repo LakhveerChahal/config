@@ -23,7 +23,7 @@ mver() {
 # CLI Aliases
 alias ll="ls -la"
 alias c="clear"
-alias .="cd .."
+alias ..="cd .."
 
 # Vim Aliases
 alias v="nvim ."
