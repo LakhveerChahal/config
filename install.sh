@@ -5,7 +5,7 @@ CWD=$(pwd)
 readonly CWD
 
 sudo apt update && sudo apt upgrade -y
-sudo apt install -y curl zip unzip ripgrep
+sudo apt install -y curl zip unzip ripgrep gcc
 
 # Install sdkman
 function install_sdkman() {
