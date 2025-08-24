@@ -63,8 +63,8 @@ function install_neovim() {
 
         cd ~/nvim-plugins && git clone https://github.com/microsoft/java-debug && cd java-debug && ./mvnw clean install -DskipTests
 
-        cd ~/nvim-plugins/nvim-jdtls && curl "https://download.eclipse.org/jdtls/milestones/1.43.0/jdt-language-server-1.43.0-202412191447.tar.gz" -o jdtls.tar.gz
-        tar -xzf jdtls.tar.gz -C ~/nvim-plugins/nvim-jdtls --strip-components=1
+        cd ~/nvim-plugins && curl "https://download.eclipse.org/jdtls/milestones/1.43.0/jdt-language-server-1.43.0-202412191447.tar.gz" -o jdtls.tar.gz
+        cd ~/nvim-plugins/nvim-jdtls/ && tar -xzf ../jdtls.tar.gz 
 
         if [ ! -f ~/nvim-plugins/lombok.jar ]; then
             echo "Downloading Lombok..."
