@@ -12,6 +12,9 @@ alias gr='git rebase'
 alias gcls='git add -A && git stash && git stash drop stash@{0}'
 alias gp='git push'
 alias gpf='git push -f'
+alias gpl='git pull origin $(git branch --show-current)'
+alias gsync='gco main && gpl && gco - && git rebase main'
+alias gl='git log --oneline --graph --all --decorate'
 
 # mvn aliases
 alias mvni='mvn -T 4 clean install -DskipTests'
