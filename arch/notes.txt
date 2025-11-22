@@ -1,0 +1,26 @@
+1. Install hyprland
+sudo pacman -S hyprland gtk4 ghostty waybar keyd brightnessctl pavucontrol openssh neovim wl-clipboard
+
+2. Install yay (for installing browser)
+
+3. Install greetd for autologin:
+sudo pacman -S greetd
+
+update /etc/greetd/config.toml to run Hyprland by default
+enable it to run on system startup:
+sudo systemctl enable greetd.service
+
+4. download proto nerd fonts and update ghostty config
+font-family = "0xProto Nerd font"
+
+5. remap capslock to escape using keyd at /etc/keyd/default.conf
+[ids]
+*
+
+[main]
+capslock = esc
+
+enable it on system start
+sudo systemctl enable keyd --now
+
+
