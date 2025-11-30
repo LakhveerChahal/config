@@ -16,7 +16,7 @@
         "hyprland/window"
     ],
     "modules-right": [
-        "pulseaudio",
+        "wireplumber",
         "network",
         "power-profiles-daemon",
         "cpu",
@@ -162,24 +162,15 @@
         "format-disconnected": "Disconnected ⚠",
         "format-alt": "{ifname}: {ipaddr}/{cidr}"
     },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% {icon} {format_source}",
-        "format-bluetooth-muted": " {icon} {format_source}",
-        "format-muted": " {format_source}",
-        "format-source": "{volume}% ",
-        "format-source-muted": "",
-        "format-icons": {
-            "headphone": "",
-            "hands-free": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", "", ""]
-        },
-        "on-click": "pavucontrol"
+    "wireplumber": {
+        "format": "{icon} {volume}%",
+        "format-muted": "\uf466 ",
+        "on-click": "~/.config/hypr/scripts/Volume.sh --toggle",
+        "on-click-right": "pavucontrol -t 3",
+        "on-scroll-up": "~/.config/hypr/scripts/Volume.sh --inc",
+        "on-scroll-down": "~/.config/hypr/scripts/Volume.sh --dec",
+        "format-icons": ["\uf026", "\uf027", "\uf028"]
+        // "max-volume": 140
     },
     "custom/media": {
         "format": "{icon} {text}",

@@ -38,7 +38,10 @@ function install_packages() {
         "nvm",
         "zoxide",
         "lazygit",
-        "less"
+        "less",
+        "pipewire",
+        "pipewire-pulse",
+        "wireplumber"
     )
     for package in "${packages[@]}"; do
         sudo pacman -S --noconfirm "$package"
@@ -53,12 +56,12 @@ function update_configs() {
     configure_zoxide
     configure_waybar
     configure_bash_aliases
+    configure_audio
 }
 
 function clone_repos() {
     clone_sdkman
     clone_nvim
-
 }
 
 function clone_nvim() {
@@ -143,3 +146,18 @@ function configure_bash_aliases() {
     fi
     source_bashrc
 }
+
+function configure_audio() {
+    # Enable and start PipeWire services
+    sudo systemctl --user enable pipewire pipewire-pulse wireplumber
+    sudo systemctl --user start pipewire pipewire-pulse wireplumber
+}
+
+function main() {
+    install_packages
+    update_configs
+    clone_repos
+    echo "System setup completed successfully!"
+}
+
+main
