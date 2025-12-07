@@ -4,7 +4,7 @@
 
 function main() {
     cp -r ./ghostty/config ~/.config/ghostty/
-    cp -r ./hyprland/hyprland.conf ~/.config/hyprland
+    cp -r ./hypr ~/.config/hypr
     cp -r ./waybar/** ~/.config/waybar/
     sudo cp -r ./greetd/config.toml /etc/greetd/
     cp ../.tmux.conf ~/.tmux.conf

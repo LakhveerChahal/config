@@ -44,12 +44,16 @@ function install_packages() {
         "wireplumber",
         "zip",
         "unzip",
-        "tmux"
+        "tmux",
+        "dolphin",
+        "hyprpaper"
     )
     for package in "${packages[@]}"; do
         sudo pacman -S --noconfirm "$package"
     done
     install_paru
+    install_tmuxinator
+    install_mirage
 }
 
 function update_configs() {
@@ -85,6 +89,10 @@ function install_tmuxinator() {
     paru -S --noconfirm tmuxinator
 
     cp ../.tmux.conf ~/.tmux.conf
+}
+
+function install_mirage() {
+    paru -S --noconfirm mirage
 }
 
 function clone_nvim() {
