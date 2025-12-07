@@ -41,11 +41,15 @@ function install_packages() {
         "less",
         "pipewire",
         "pipewire-pulse",
-        "wireplumber"
+        "wireplumber",
+        "zip",
+        "unzip",
+        "tmux"
     )
     for package in "${packages[@]}"; do
         sudo pacman -S --noconfirm "$package"
     done
+    install_paru
 }
 
 function update_configs() {
@@ -62,6 +66,25 @@ function update_configs() {
 function clone_repos() {
     clone_sdkman
     clone_nvim
+}
+
+function install_paru() {
+    if ! command -v paru &> /dev/null; then
+        echo "paru not found, installing..."
+        git clone https://aur.archlinux.org/paru.git ~/paru
+        cd ~/paru || exit
+        makepkg -si --noconfirm
+        cd "$CWD" || exit
+        rm -rf ~/paru
+    else
+        echo "paru is already installed."
+    fi
+}
+
+function install_tmuxinator() {
+    paru -S --noconfirm tmuxinator
+
+    cp ../.tmux.conf ~/.tmux.conf
 }
 
 function clone_nvim() {

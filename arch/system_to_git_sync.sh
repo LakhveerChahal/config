@@ -7,6 +7,8 @@ function main() {
     cp -r ~/.config/hypr/hyprland.conf ./hyprland/
     cp -r ~/.config/waybar/** ./waybar/
     sudo cp -r /etc/greetd/config.toml ./greetd/
+    cp ~/.tmux.conf ../.tmux.conf
+    cp -r ~/.config/tmuxinator ../tmuxinator
 }
 
 main
