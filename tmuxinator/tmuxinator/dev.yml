@@ -1,0 +1,9 @@
+---
+name: dev
+windows:
+- nvim:
+    layout: bfbd,139x44,0,0,0
+- server:
+    layout: bfbe,139x44,0,0,1
+- other:
+    layout: bfbf,139x44,0,0,2

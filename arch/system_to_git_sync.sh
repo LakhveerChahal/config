@@ -9,6 +9,7 @@ function main() {
     sudo cp -r /etc/greetd/config.toml ./greetd/
     cp ~/.tmux.conf ../.tmux.conf
     cp -r ~/.config/tmuxinator ../tmuxinator
+    cp -r ~/.config/wofi ./wofi
 }
 
 main
