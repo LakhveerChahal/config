@@ -10,6 +10,7 @@ function main() {
     cp ~/.tmux.conf ../.tmux.conf
     cp -r ~/.config/tmuxinator ../tmuxinator
     cp -r ~/.config/wofi ./wofi
+    cp ~/.config/kwalletrc ./kdewallet/
 }
 
 main
