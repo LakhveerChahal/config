@@ -97,13 +97,20 @@ function install_mirage() {
 
 function clone_nvim() {
     mkdir -p ~/.config
+    
+    rm -rf ~/.config/nvim
     # clone nvim config
     cd ~/.config && git clone https://github.com/LakhveerChahal/nvim
 
     cd ~ && mkdir -p nvim-space
     cd ~ && mkdir -p nvim-plugins && cd nvim-plugins && mkdir -p nvim-jdtls
 
-    cd ~/nvim-plugins && git clone https://github.com/microsoft/java-debug && cd java-debug && ./mvnw clean install -DskipTests
+    rm -rf ~/nvim-plugins/java-debug
+
+    cd ~/nvim-plugins && curl -sL -o java-debug.tar.gz https://github.com/microsoft/java-debug/archive/refs/tags/0.53.1.tar.gz \
+        && tar -xzf java-debug.tar.gz \
+        && mv java-debug-0.53.1 java-debug \
+        && cd java-debug && ./mvnw clean install -DskipTests
 
     cd ~/nvim-plugins && curl "https://download.eclipse.org/jdtls/milestones/1.43.0/jdt-language-server-1.43.0-202412191447.tar.gz" -o jdtls.tar.gz
     cd ~/nvim-plugins/nvim-jdtls/ && tar -xzf ../jdtls.tar.gz 
