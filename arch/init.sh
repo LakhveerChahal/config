@@ -113,7 +113,7 @@ function clone_nvim() {
         && mv java-debug-0.53.1 java-debug \
         && cd java-debug && ./mvnw clean install -DskipTests
 
-    cd ~/nvim-plugins && curl "https://download.eclipse.org/jdtls/milestones/1.43.0/jdt-language-server-1.43.0-202412191447.tar.gz" -o jdtls.tar.gz
+    cd ~/nvim-plugins && curl "https://download.eclipse.org/jdtls/milestones/1.54.0/jdt-language-server-1.54.0-202511261751.tar.gz" -o jdtls.tar.gz
     cd ~/nvim-plugins/nvim-jdtls/ && tar -xzf ../jdtls.tar.gz 
 
     if [ ! -f ~/nvim-plugins/lombok.jar ]; then
