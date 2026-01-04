@@ -46,7 +46,8 @@ function install_packages() {
         "unzip",
         "tmux",
         "dolphin",
-        "hyprpaper"
+        "hyprpaper",
+        "go"
     )
     for package in "${packages[@]}"; do
         sudo pacman -S --noconfirm "$package"
