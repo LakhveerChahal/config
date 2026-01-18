@@ -4,12 +4,12 @@
 
 function main() {
     cp -r ~/.config/ghostty/config ./ghostty/
-    cp -r ~/.config/hypr/ ./hypr/
-    cp -r ~/.config/waybar/** ./waybar/
+    cp -r ~/.config/hypr ./
+    cp -r ~/.config/waybar ./
     sudo cp -r /etc/greetd/config.toml ./greetd/
     cp ~/.tmux.conf ../.tmux.conf
     cp -r ~/.config/tmuxinator ../
-    cp -r ~/.config/wofi ./wofi
+    cp -r ~/.config/wofi ./
     cp ~/.config/kwalletrc ./kdewallet/
 }
 
