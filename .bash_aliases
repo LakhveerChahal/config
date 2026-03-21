@@ -29,6 +29,6 @@ alias c="clear"
 alias ..="cd .."
 
 # Vim Aliases
-alias v="nvim ."
-alias vi="nvim ."
-alias vim="nvim ."
+alias v="nvim"
+alias vi="nvim"
+alias vim="nvim"

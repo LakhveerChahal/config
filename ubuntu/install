@@ -80,7 +80,7 @@ function copy_dotfiles() {
     echo "Copying dotfiles from $CWD..."
     # Set bash aliases
     cd $CWD
-    cp .bash_aliases ~/
+    cp ../.bash_aliases ~/
     source ~/.bashrc
 }
 
