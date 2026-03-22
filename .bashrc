@@ -136,3 +136,5 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init - bash)"
 
 eval "$(zoxide init --cmd cd bash)"
+
+export SUDO_EDITOR="$(which nvim)"
