@@ -5,5 +5,7 @@ windows:
     layout: bfbd,139x44,0,0,0
 - server:
     layout: bfbe,139x44,0,0,1
+- opencode:
+    layout: bfbe,139x44,0,0,2
 - other:
-    layout: bfbf,139x44,0,0,2
+    layout: bfbf,139x44,0,0,3

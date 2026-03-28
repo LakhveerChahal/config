@@ -32,3 +32,11 @@ alias ..="cd .."
 alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
+
+# Tmux aliases
+alias t="tmux"
+alias mux="tmuxinator"
+alias dev="tmuxinator start dev"
+
+# Opencode
+alias o="opencode"
